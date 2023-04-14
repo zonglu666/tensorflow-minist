@@ -17,7 +17,7 @@ model = load_model('mnist.h5')
 
  
 # 3、载入自己写的数字图片并设置大小
-img = Image.open('./images/5.jpg')
+img = Image.open('./images/a.jpg')
 # 设置大小（和数据集的图片一致）
 img = img.resize((28, 28))
  
@@ -32,27 +32,29 @@ image = gray_inv.reshape((1,28,28,1))
  
 # 7、预测
 prediction = model.predict(image)           # 预测
-for i in range(0, 9):
+for i in range(0, 10):
   temp = prediction[0][i]
-  print(i, '概率:', int(prediction[0][i]*100), '%')
+  print('数字', i, '概率:', int(prediction[0][i]*100), '%')
 
 result = np.argmax(prediction, axis=1)   # 找出最大值
-print('最终结果：', result)
+result = result[0]
+print('最终预测数字为：', result)
  
 # 8、显示
 # 设置plt图表
 f, ax = plt.subplots(2, 2, figsize=(5, 5))
 
-# 显示原图
-ax[0][0].set_title('img')
-ax[0][0].axis('off')
-ax[0][0].imshow(img, 'gray')
 
 # 显示数据集图像
-ax[0][1].set_title('train')
-ax[0][1].axis('off')
+ax[0][0].set_title('train')
+ax[0][0].axis('off')
 train_imgs = [21, 3, 16, 7, 53, 35, 18, 42, 41, 22]
-ax[0][1].imshow(x_train[train_imgs[result[0]]], 'gray')
+ax[0][0].imshow(x_train[train_imgs[result]], 'gray')
+
+# 显示原图
+ax[0][1].set_title('img')
+ax[0][1].axis('off')
+ax[0][1].imshow(img, 'gray')
 
 # 显示灰度图（白底黑字）
 ax[1][0].set_title('gray')
@@ -60,7 +62,7 @@ ax[1][0].axis('off')
 ax[1][0].imshow(gray, 'gray')
 
 # 显示灰度图（黑底白字）
-ax[1][1].set_title(f' {int(prediction[0][result[0]]*100)}%: {result}')
+ax[1][1].set_title(f' {int(prediction[0][result]*100)}%: {result}')
 ax[1][1].axis('off')
 ax[1][1].imshow(gray_inv, 'gray')
 
