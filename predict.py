@@ -17,7 +17,7 @@ model = load_model('mnist.h5')
 
  
 # 3、载入自己写的数字图片并设置大小
-img = Image.open('./images/a.jpg')
+img = Image.open('./images/5.jpg')
 # 设置大小（和数据集的图片一致）
 img = img.resize((28, 28))
  
@@ -43,16 +43,16 @@ print('最终结果：', result)
 # 设置plt图表
 f, ax = plt.subplots(2, 2, figsize=(5, 5))
 
-# 显示数据集图像
-ax[0][0].set_title('train')
-ax[0][0].axis('off')
-train_imgs = [21, 3, 16, 7, 53, 35, 18, 42, 41, 22]
-ax[0][0].imshow(x_train[train_imgs[result[0]]], 'gray')
-
 # 显示原图
-ax[0][1].set_title('img')
+ax[0][0].set_title('img')
+ax[0][0].axis('off')
+ax[0][0].imshow(img, 'gray')
+
+# 显示数据集图像
+ax[0][1].set_title('train')
 ax[0][1].axis('off')
-ax[0][1].imshow(img, 'gray')
+train_imgs = [21, 3, 16, 7, 53, 35, 18, 42, 41, 22]
+ax[0][1].imshow(x_train[train_imgs[result[0]]], 'gray')
 
 # 显示灰度图（白底黑字）
 ax[1][0].set_title('gray')
