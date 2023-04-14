@@ -7,4 +7,7 @@
 
 数据集下载：**http://yann.lecun.com/exdb/mnist/**
 
-在使用中有任何问题，欢迎反馈给我。
+- train-images-idx3-ubyte 训练数据图像 (60,000)
+- train-labels-idx1-ubyte 训练数据label
+- t10k-images-idx3-ubyte 测试数据图像 (10,000)
+- t10k-labels-idx1-ubyte 测试数据label
