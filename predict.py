@@ -15,7 +15,6 @@ mnist = tf.keras.datasets.mnist
 # 2、载入训练好的模型
 model = load_model('mnist.h5')
 
- 
 # 3、载入自己写的数字图片并设置大小
 img = Image.open('./images/a.jpg')
 # 设置大小（和数据集的图片一致）
