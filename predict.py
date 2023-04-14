@@ -32,18 +32,18 @@ image = gray_inv.reshape((1,28,28,1))
  
 # 7、预测
 prediction = model.predict(image)           # 预测
-print('======', prediction)
-prediction = np.argmax(prediction, axis=1)   # 找出最大值
 print('预测结果：', prediction)
+prediction = np.argmax(prediction, axis=1)   # 找出最大值
+print('最终结果：', prediction)
  
 # 8、显示
 # 设置plt图表
 f, ax = plt.subplots(2, 2, figsize=(5, 5))
 
 # 显示数据集图像
-ax[0][0].set_title('train_model')
+ax[0][0].set_title('train')
 ax[0][0].axis('off')
-ax[0][0].imshow(x_train[18], 'gray')
+ax[0][0].imshow(x_train[3], 'gray')
 
 # 显示原图
 ax[0][1].set_title('img')
