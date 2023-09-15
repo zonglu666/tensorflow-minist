@@ -1,3 +1,4 @@
+# coding:utf-8 
 # 识别自己的手写数字（图像预测）
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
@@ -7,7 +8,7 @@ from tensorflow.keras.models import load_model
 import matplotlib.pyplot as plt
 from PIL import Image
 import numpy as np
- 
+
 # 1、载入数据
 mnist = tf.keras.datasets.mnist
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
@@ -16,7 +17,7 @@ mnist = tf.keras.datasets.mnist
 model = load_model('mnist.h5')
 
 # 3、载入自己写的数字图片并设置大小
-img = Image.open('./images/a.jpg')
+img = Image.open('./test/zong-5.png')
 # 设置大小（和数据集的图片一致）
 img = img.resize((28, 28))
  
@@ -43,27 +44,26 @@ print('最终预测数字为：', result)
 # 设置plt图表
 f, ax = plt.subplots(2, 2, figsize=(5, 5))
 
-
-# 显示数据集图像
-ax[0][0].set_title('train')
-ax[0][0].axis('off')
-train_imgs = [21, 3, 16, 7, 53, 35, 18, 42, 41, 22]
-ax[0][0].imshow(x_train[train_imgs[result]], 'gray')
-
 # 显示原图
-ax[0][1].set_title('img')
-ax[0][1].axis('off')
-ax[0][1].imshow(img, 'gray')
+ax[0][0].set_title('img')
+ax[0][0].axis('off')
+ax[0][0].imshow(img, 'gray')
 
 # 显示灰度图（白底黑字）
-ax[1][0].set_title('gray')
-ax[1][0].axis('off')
-ax[1][0].imshow(gray, 'gray')
+ax[0][1].set_title('gray')
+ax[0][1].axis('off')
+ax[0][1].imshow(gray, 'gray')
 
 # 显示灰度图（黑底白字）
-ax[1][1].set_title(f' {int(prediction[0][result]*100)}%: {result}')
+ax[1][0].set_title(f' {int(prediction[0][result]*100)}%: {result}')
+ax[1][0].axis('off')
+ax[1][0].imshow(gray_inv, 'gray')
+
+# 显示数据集图像
+ax[1][1].set_title('train')
 ax[1][1].axis('off')
-ax[1][1].imshow(gray_inv, 'gray')
+train_imgs = [21, 3, 16, 7, 53, 35, 18, 42, 41, 22]
+ax[1][1].imshow(x_train[train_imgs[result]], 'gray')
 
 
 plt.show()

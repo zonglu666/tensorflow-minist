@@ -1,3 +1,4 @@
+# coding:utf-8 
 # 手写数字识别 -- CNN神经网络训练
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
