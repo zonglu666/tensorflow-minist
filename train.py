@@ -1,11 +1,11 @@
 # coding:utf-8 
 # 手写数字识别 -- CNN神经网络训练
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
- 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense,Dropout,Convolution2D,MaxPooling2D,Flatten
+from tensorflow.keras.layers import Dense, Dropout, Convolution2D, MaxPooling2D, Flatten
 from tensorflow.keras.optimizers import Adam
  
 # 1、载入数据
@@ -35,15 +35,15 @@ model.add(Convolution2D(input_shape = (28,28,1), filters = 32, kernel_size = 5, 
 # 第一个池化层 # pool_size
 model.add(MaxPooling2D(pool_size = 2, strides = 2, padding = 'same',))
 #         池化层(最大池化) 池化窗口大小   步长          填充方式
- 
+
 # 5-2、第二层：卷积层+池化层
 # 第二个卷积层
 model.add(Convolution2D(64, 5, strides=1, padding='same', activation='relu'))
-# 64:滤波器个数      5:卷积窗口大小
+#               64:滤波器个数      5:卷积窗口大小
 # 第二个池化层
 model.add(MaxPooling2D(2, 2, 'same'))
  
-# 5-3、扁平化 （相当于把(64,7,7,64)数据->(64,7*7*64)）
+# 5-3、扁平化 （相当于把(7,7,64)数据->(7*7*64)）
 model.add(Flatten())
  
 # 5-4、第三层：第一个全连接层
@@ -56,10 +56,10 @@ model.add(Dense(10, activation='softmax'))
  
 # 6、编译
 model.compile(optimizer=Adam(lr=1e-4), loss='categorical_crossentropy', metrics=['accuracy'])
-#            优化器(adam)               损失函数(交叉熵损失函数)            标签
+#            优化器(adam)     学习率         损失函数(交叉熵损失函数)            标签
  
 # 7、训练
 model.fit(train_data, train_target, batch_size=64, epochs=10, validation_data=(test_data, test_target))
- 
+
 # 8、保存模型
 model.save('mnist.h5')

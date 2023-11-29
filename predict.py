@@ -17,7 +17,7 @@ mnist = tf.keras.datasets.mnist
 model = load_model('mnist.h5')
 
 # 3、载入自己写的数字图片并设置大小
-img = Image.open('./test/zong-5.png')
+img = Image.open('./test/zong-2.png')
 # 设置大小（和数据集的图片一致）
 img = img.resize((28, 28))
  
