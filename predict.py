@@ -17,7 +17,7 @@ mnist = tf.keras.datasets.mnist
 model = load_model('mnist.h5')
 
 # 3、载入自己写的数字图片并设置大小
-img = Image.open('./test/zong-2.png')
+img = Image.open('./test/zhang-5.png')
 # 设置大小（和数据集的图片一致）
 img = img.resize((28, 28))
  
@@ -34,11 +34,11 @@ image = gray_inv.reshape((1,28,28,1))
 prediction = model.predict(image)           # 预测
 for i in range(0, 10):
   temp = prediction[0][i]
-  print('数字', i, '概率:', int(prediction[0][i]*100), '%')
+  print(f'数字 {i} 预测概率: {prediction[0][i]*100:.2f}%')
 
 result = np.argmax(prediction, axis=1)   # 找出最大值
 result = result[0]
-print('最终预测数字为：', result)
+print(f'最终预测数字为：{result}')
  
 # 8、显示
 # 设置plt图表
@@ -55,7 +55,7 @@ ax[0][1].axis('off')
 ax[0][1].imshow(gray, 'gray')
 
 # 显示灰度图（黑底白字）
-ax[1][0].set_title(f' {int(prediction[0][result]*100)}%: {result}')
+ax[1][0].set_title(f'{int(prediction[0][result]*100)}%: {result}')
 ax[1][0].axis('off')
 ax[1][0].imshow(gray_inv, 'gray')
 

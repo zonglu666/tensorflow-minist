@@ -44,11 +44,12 @@ model.add(Convolution2D(64, 5, strides=1, padding='same', activation='relu'))
 model.add(MaxPooling2D(2, 2, 'same'))
  
 # 5-3、扁平化 （相当于把(7,7,64)数据->(7*7*64)）
+# 便于传递到全连接层
 model.add(Flatten())
  
 # 5-4、第三层：第一个全连接层
 model.add(Dense(1024, activation = 'relu'))
-model.add(Dropout(0.5))
+model.add(Dropout(0.5)) # 防止过拟合，在训练随机丢弃50%神经元
  
 # 5-5、第四层：第二个全连接层（输出层）
 model.add(Dense(10, activation='softmax'))
@@ -62,4 +63,4 @@ model.compile(optimizer=Adam(lr=1e-4), loss='categorical_crossentropy', metrics=
 model.fit(train_data, train_target, batch_size=64, epochs=10, validation_data=(test_data, test_target))
 
 # 8、保存模型
-model.save('mnist.h5')
+model.save('mnist-11.h5')
